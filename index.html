@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Future is Now</title>
+    <style>
+      #clock {
+        font-family: Arial, sans-serif;
+        font-size: 1.60em;
+        font-weight: bold;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+    <script>
+      function updateClock() {
+        const time = new Date();
+        const year = time.getFullYear();
+        const month = time.getMonth() + 1;
+        let day = time.getDate();
+        let hours = time.getHours();
+        let minutes = time.getMinutes();
+        let seconds = time.getSeconds();
+        let centiseconds = Math.floor(time.getMilliseconds() / 10);
+        day = (day < 10 ? "0" : "") + day;
+        hours = (hours < 10 ? "0" : "") + hours;
+        minutes = (minutes < 10 ? "0" : "") + minutes;
+        seconds = (seconds < 10 ? "0" : "") + seconds;
+        centiseconds = (centiseconds < 10 ? "0" : "") + centiseconds;
+        document.getElementById("clock").firstChild.nodeValue =
+          `${year} | ${month} | ${day} | ${hours} | ${minutes} | ${seconds} | ${centiseconds}`;
+      }
+    </script>
+  </head>
+  <body onload="updateClock(); setInterval('updateClock()', 10)">
+    <span id="clock">Future is Now</span>
+  </body>
+</html>
